@@ -24,8 +24,5 @@ def entry(img, dir='dest/', txt=True, json=True, image=True, html=True):
         return
 
 
-
-
-
 if __name__ == "__main__":
     fire.Fire(entry)

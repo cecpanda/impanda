@@ -28,6 +28,7 @@ import json
 import re
 from pprint import pprint
 
+import imageio
 from PIL import Image, ImageDraw, ImageFont
 from jinja2 import Template, Environment, PackageLoader
 
@@ -160,3 +161,54 @@ class Img2Txt(object):
             self.to_image(txt, f'{name}.png')
         if html:
             self.to_html(txt, f'{name}.html')
+
+
+class Gif2Txt(Img2Txt):
+
+    def git2png(self):
+        im = self.image.copy()
+        palette = im.getpalette()
+        images = []
+        try:
+            while True:
+                im.putpalette(palette)
+                new_im = Image.new('RGB', im.size)
+                new_im.paste(im)
+                # new_im.save()
+                images.append(new_im)
+                im.seek(im.tell() + 1)
+        except EOFError:
+            pass
+        return images
+
+    def png2gif(self):
+        pass
+
+    def png2gif_save_1(self):
+        images = self.git2png()
+        im = Image.new('RGB', self.image.size)
+        # 0 表示 无限循化
+        im.save('test.gif', save_all=True, append_images=images, loop=0, duration=80)
+
+    def png2gif_save_2(self):
+        images = []
+        for i in range(1, 5):
+            images.append(imageio.imread(f'{i}.png'))
+        imageio.mimsave('_test.gif', images, duration=0.1)
+
+    def to_txt(self, txt, name='out.txt'):
+        return NotImplemented
+
+    def to_json(self, txt, name='out.json', convert=True):
+        pass
+
+    def to_image(self, txt, name='out.png'):
+        pass
+
+    def to_html(self, txt, name='out.html'):
+        pass
+
+    def start(self, json=False, image=True, html=False, *args, **kwargs):
+        pass
+
+
