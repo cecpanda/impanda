@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        pre {
+            font-size: 1em;
+            line-height: 1.1em;
+            margin: 0 50px;
+        }
+    </style>
+</head>
+<body>
+    {% for txt in txts %}
+    <pre id="{{ loop.index }}" {% if loop.index > 0 %}style="display: none"{% endif %}>{{ txt }}</pre>
+    {% endfor %}
+    <script>
+        var id = 1;
+        setInterval(function() {
+            document.getElementById(id.toString()).style.display = 'none';
+            id = id + 1;
+            if (id > {{ txts | length }}) id = 1;
+            console.log(id)
+            document.getElementById(id.toString()).style.display = 'block';
+          }, 80);
+    </script>
+</body>
+</html>

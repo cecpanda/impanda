@@ -1,2 +1,2 @@
-from .txt import Img2Txt
+from .txt import Img2Txt, Gif2Txt, ImgToTxt
 
