@@ -1,5 +1,6 @@
 # image-panda
 
+<<<<<<< HEAD
 # Usage：PNG/JPEG
 '''
 Usage:
@@ -33,3 +34,21 @@ Options:
   --html
 
 '''
+=======
+# usage
+
+```
+Usage:
+  
+  python panda.py <image> [options]
+  
+Options:
+
+  --img  要处理的图片
+  --dir  输出目录
+  --txt
+  --json
+  --image
+  --html
+```
+>>>>>>> 2058df8a4e91785a8c4755e63a7988091929f2db
