@@ -6,21 +6,21 @@
     <style>
         pre {
             font-size: 1em;
-            line-height: 1.1em;
+            line-height: 0.7em;
             margin: 0 50px;
         }
     </style>
 </head>
 <body>
-    {% for txt in txts %}
-    <pre id="{{ loop.index }}" {% if loop.index > 0 %}style="display: none"{% endif %}>{{ txt }}</pre>
+    {% for txt in data %}
+    <pre id="{{ loop.index }}" {% if loop.index > 0 %}style="display: none"{% endif %}>{% for line in txt %}{{ line }}{% endfor %}</pre>
     {% endfor %}
     <script>
         var id = 1;
         setInterval(function() {
             document.getElementById(id.toString()).style.display = 'none';
             id = id + 1;
-            if (id > {{ txts | length }}) id = 1;
+            if (id > {{ data | length }}) id = 1;
             console.log(id)
             document.getElementById(id.toString()).style.display = 'block';
           }, 80);
