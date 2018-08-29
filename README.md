@@ -1,8 +1,6 @@
 # image-panda
 
-熊猫画图
-
-支持 png/jpeg/gif 格式. 
+熊猫画图, 支持 png、jpeg、gif 格式。 
 
 # Usage
 
@@ -23,13 +21,12 @@ Options:
   --json         默认 False, 每个元素表示图片的每行
                  png/jpeg: ['abcd', 'sfdfs',...]
                  gif: [['abcd', 'sfdfs',...],...[...]]
-           
   --image        默认 False, 生成 png/gif 图片
   --html         默认 True
-  --color        默认 False, 是否带有颜色, 每个字符都用 span 包裹起来
+  --color        默认 False, 是否带有颜色。 每个字符都用 span 包裹起来
                  如 "<span style='color:rgb{rgb};'>{char}</span>"
-                 耗时较长!
-  --style        默认为 char, block/char, 当指定为 block 时, --color 强制为 True
+                 此选项耗时较长!
+  --style        默认为 char, 可选 block 或 char, 当指定为 block 时, --color 强制为 True
 ```
 
 ## 手绘图
