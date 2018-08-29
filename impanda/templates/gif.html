@@ -23,7 +23,7 @@
             if (id > {{ data | length }}) id = 1;
             console.log(id)
             document.getElementById(id.toString()).style.display = 'block';
-          }, 80);
+          }, {{ duration }});
     </script>
 </body>
 </html>

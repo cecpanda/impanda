@@ -22,5 +22,30 @@ RGB一般是8位精度，现在缩放1000倍，所以上面的运算是32位整�
 Gray = (R*30 + G*59 + B*11 + 50) / 100
 '''
 
-# from .txt_bak import Img2Txt, Gif2Txt, ImgToTxt, GifToTxt
+from PIL import Image
+
 from .txt import ImgToTxt, GifToTxt
+from .sketch import Sketch
+
+
+def panda(img, dir='dest/', max_len=80, duration=80,
+          text=False, json=False, image=False, html=True, color=False, style='char',
+          sketch=False, depth=10):
+    try:
+        im = Image.open(img)
+    except Exception as e:
+        print(e)
+        return
+
+    format = im.format
+
+    if sketch:
+        Sketch(image=img, out_dir=dir, depth=depth, duration=duration).run()
+    else:
+        if format == 'JPEG' or format == 'PNG':
+            ImgToTxt(image=img, out_dir=dir, max_len=max_len).run(text=text, json=json, image=image, html=html, color=color, style=style)
+        elif format == 'GIF':
+            GifToTxt(image=img, out_dir=dir, max_len=max_len, duration=duration).run(json=json, image=image, html=html, color=color, style=style)
+        else:
+            print('仅支持 JPEG/PNG/GIF！')
+            return
